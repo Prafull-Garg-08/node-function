@@ -13,3 +13,12 @@ jobs:
               id: Checkout
               uses: actions/checkout@v4
              
+    build:
+        runs-on: ubuntu-latest
+        needs: checkout
+        steps:
+            - name: get insights about source code checkout
+              run: |
+                echo "commit_shs:${{needs.checkout.outputs.commit_sha}}"
+                echo "branch_name:${{needs.checkout.outputs.branch_name}}"
+              
