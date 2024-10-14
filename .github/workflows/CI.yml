@@ -12,13 +12,32 @@ jobs:
             - name: Checkout Source Code
               id: check_out
               uses: actions/checkout@v4
-             
-    build:
+
+    lint :
         runs-on: ubuntu-latest
         needs: checkout
         steps:
-            - name: get insights about source code checkout
+            - name: Setup node environment
+              uses: actions/setup-node@v4
+              with:
+                node-version: "18"
+            
+            - name: Install Dependencies
+              run: npm ci
+
+            - name: Check diretory structure
               run: |
-                echo "commit_sha:${{needs.checkout.outputs.commit_sha}}"
-                echo "branch_name:${{needs.checkout.outputs.branch_name}}"
+                pwd
+                cd ..
+                ls -al
+
+             
+    # build:
+    #     runs-on: ubuntu-latest
+    #     needs: checkout
+    #     steps:
+    #         - name: get insights about source code checkout
+    #           run: |
+    #             echo "commit_sha:${{needs.checkout.outputs.commit_sha}}"
+    #             echo "branch_name:${{needs.checkout.outputs.branch_name}}"
               
