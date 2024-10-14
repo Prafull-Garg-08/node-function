@@ -33,7 +33,11 @@ jobs:
 
 
             - name: Install Dependencies
-              run: npm install
+              run: npm ci
+            
+            - name: Running linter
+              run: npm run lint
+            
 
             - name: Check diretory structure
               run: |
