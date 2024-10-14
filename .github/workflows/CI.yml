@@ -5,7 +5,11 @@ on: [workflow_dispatch]
 jobs:
     checkout:
         runs-on: ubuntu-latest
+        outputs:
+            commit_sha: ${{ steps.check_out.outputs.sha }}
+            branch_name: ${{ steps.check_out.outputs.ref }}
         steps:
             - name: Checkout Source Code
+              id: Checkout
               uses: actions/checkout@v4
              
