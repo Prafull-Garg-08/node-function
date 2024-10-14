@@ -12,22 +12,28 @@ jobs:
             - name: Checkout Source Code
               id: check_out
               uses: actions/checkout@v4
-            - name: Current working directory for checkout
-              run: |
-               pwd
-               ls -al
+            - name: Upload Source Code
+              uses: actions/upload-artifact@v3
+              with:
+                name: source-code
+                path: . 
 
     lint :
         runs-on: ubuntu-latest
         needs: checkout
         steps:
+            - name: Download Source Code
+              uses: actions/download-artifact@v3
+              with:
+               name: source-code
             - name: Setup node environment
               uses: actions/setup-node@v4
               with:
                 node-version: "18"
 
-            # - name: Install Dependencies
-            #   run: npm install
+
+            - name: Install Dependencies
+              run: npm install
 
             - name: Check diretory structure
               run: |
