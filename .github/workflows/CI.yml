@@ -1,0 +1,11 @@
+name: Continous Integration For Ingestion Function App
+
+on: [workflow_dispatch]
+
+jobs:
+    checkout:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Source Code
+              uses: actions/checkout@v4
+             
